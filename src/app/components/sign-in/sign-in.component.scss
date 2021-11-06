@@ -1,0 +1,78 @@
+.row{
+  margin-top: 11%;
+}
+::ng-deep .p-card{
+  position: relative;
+  z-index: 10;
+}
+::ng-deep body{
+  overflow: hidden;
+}
+#signInBackground{
+  display: flex;
+  background-size: auto;
+  height: 93vh;
+}
+img{
+  width: 16%;
+  position: absolute;
+}
+#note1{
+  left: 49%;
+  top: 33%;
+}
+#note2{
+  left: 27%;
+  top: 10%;
+}
+#note3{
+  left: 60%;
+  top: 10%;
+}
+#note4{
+  left: 79%;
+}
+#note5{
+  left: 36%;
+  top: 58%;
+}
+#note6{
+  left: 71%;
+  top: 62%;
+}
+
+@media screen and (max-width: 768px) {
+  .row{
+    margin-top: 56%;
+  }
+  #signInBackground{
+    height: 100vh;
+  }
+  img{
+    width: 37%;
+  }
+  #note1{
+    left: -1%;
+    top: 18%;
+  }
+  #note2{
+    left: 38%;
+    top: 7%;
+  }
+  #note3{
+    left: 64%;
+    top: 15%;
+  }
+  #note4{
+    left: 60%;
+    top: 60%;
+  }
+  #note5{
+    left: 7%;
+    top: 70%;
+  }
+  #note6{
+    left: 64%;
+    top: 82%;
+  }
+}
