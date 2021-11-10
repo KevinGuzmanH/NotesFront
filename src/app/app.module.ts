@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {KeyFilterModule} from 'primeng/keyfilter';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {SidebarModule} from 'primeng/sidebar';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import {ButtonModule} from 'primeng/button';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -18,24 +16,43 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
 import {DataViewModule} from 'primeng/dataview';
 import {DropdownModule} from "primeng/dropdown";
 
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import { NotesListComponent } from './components/shared/notes-list/notes-list.component';
+import { SideBarComponent } from './components/shared/side-bar/side-bar.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import {EditorModule} from 'primeng/editor';
+import { ProfileComponent } from './components/profile/profile.component';
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
+
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
     AuthNavbarComponent,
     SignUpComponent,
     SignInComponent,
-    NewNoteComponent
+    NewNoteComponent,
+    NotesListComponent,
+    SideBarComponent,
+    CalendarComponent,
+    ProfileComponent,
   ],
   imports: [
+    FullCalendarModule,
     BrowserModule,
-    SidebarModule,
     ButtonModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
     InputTextModule,
+    KeyFilterModule,
     CardModule,
+    EditorModule,
     AutoCompleteModule,
     DataViewModule,
     FormsModule,

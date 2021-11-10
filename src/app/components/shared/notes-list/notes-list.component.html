@@ -1,0 +1,19 @@
+<div id="dataviewDiv">
+  <p-dataView [value]="Notes" [sortField]="sortField" [sortOrder]="sortOrder" [paginator]="true" [rows]="5">
+    <ng-template pTemplate="header">
+      <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Category"
+                  (onChange)="onSortChange($event)" [style]="{'min-width':'15em'}"></p-dropdown>
+    </ng-template>
+    <ng-template let-product pTemplate="listItem">
+      <div class="p-col-12 p-3 shadow-1 my-1" >
+        <div class="product-list-item">
+          <div class="product-list-detail">
+            <div class="product-name">{{product.category}}</div>
+            <div class="product-description">{{product.title}}</div>
+            <i class="pi pi-tag product-category-icon"></i><span class="product-category">{{product.text}}</span>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-dataView>
+</div>

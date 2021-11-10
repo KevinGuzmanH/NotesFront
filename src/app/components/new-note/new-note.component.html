@@ -1,43 +1,31 @@
-<app-sidebar></app-sidebar>
-<div id="newNoteDiv" class="row m-0">
+<app-side-bar></app-side-bar>
+<div class="row m-0">
   <div class="col-9">
-    a
+    <div class="p-4 marginSideBar">
+    <h2>New Note</h2>
+    <ul>
+      <li>Switch between the different fonts</li>
+      <li>Add code as functions or classes</li>
+      <li>Improve your understanding of work</li>
+    </ul>
+      <form [formGroup]="newNote" (ngSubmit)="onsubmit()">
+        <div class="form-group">
+          <label for="noteTitle">Title</label>
+          <input type="text" class="form-control" id="noteTitle" formControlName="title" placeholder="Enter title">
+        </div>
+        <div class="form-group">
+          <label for="noteCategory">Category</label>
+          <input id="noteCategory" class="form-control" formControlName="title" type="text" [pKeyFilter]="noSpecial">
+        </div>
+      </form>
+        <div class="pt-2">
+          <p-editor [minlength]="5" [(ngModel)]="text" [style]="{'height':'320px'}"></p-editor>
+        </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+
+    </div>
   </div>
-  <div class="col-3">
-    <p-dataView #dv [value]="products" [paginator]="true" [rows]="20"  filterBy="brand" layout="grid"
-                [sortField]="sortField" [sortOrder]="sortOrder">
-      <p-header>
-        <div class="ui-helper-clearfix">
-          <div class="p-grid">
-            <div class="p-col-12 p-md-4">
-              <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange($event)" [style]="{'min-width':'140px'}"></p-dropdown>
-            </div>
-            <div class="p-col-6 p-md-4 filter-container">
-              <div style="position:relative">
-                <input type="search" pInputText placeholder="Search by brand" >
-              </div>
-            </div>
-            <div class="p-col-6 p-md-4" style="text-align:right">
-              <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-            </div>
-          </div>
-        </div>
-      </p-header>
-      <ng-template let-car pTemplate="listItem">
-        <div class="p-col-12">
-          <div class="car-details">
-            <div>
-              <div class="p-grid">
-                <div class="p-col-12">Vin: <b>{{car.vin}}</b></div>
-                <div class="p-col-12">Year: <b>{{car.year}}</b></div>
-                <div class="p-col-12">Brand: <b>{{car.brand}}</b></div>
-                <div class="p-col-12">Color: <b>{{car.color}}</b></div>
-              </div>
-            </div>
-            <button pButton type="button" icon="pi pi-search" (click)="selectCar($event, car)"></button>
-          </div>
-        </div>
-      </ng-template>
-    </p-dataView>
+  <div class="col-3 shadow-5">
+    <app-notes-list></app-notes-list>
   </div>
 </div>

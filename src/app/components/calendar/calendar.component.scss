@@ -1,0 +1,9 @@
+
+#calendar{
+  height: 50%;
+  width: 90%;
+}
+::ng-deep body .fc.fc-theme-standard .fc-view-harness td {
+  color: currentColor;
+  border-color: currentColor;
+}
