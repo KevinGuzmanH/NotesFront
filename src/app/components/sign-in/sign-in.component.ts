@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-sign-in',
@@ -17,9 +18,10 @@ export class SignInComponent implements OnInit {
                                                        Validators.maxLength(20)])
   });
 
-  constructor() { }
+  constructor(private cookieService: CookieService) { }
 
   ngOnInit(): void {
+    this.cookieService.set('username', '', 1);
   }
 
   submit() {

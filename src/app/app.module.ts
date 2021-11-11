@@ -24,6 +24,9 @@ import { SideBarComponent } from './components/shared/side-bar/side-bar.componen
 import { CalendarComponent } from './components/calendar/calendar.component';
 import {EditorModule} from 'primeng/editor';
 import { ProfileComponent } from './components/profile/profile.component';
+import { DarkModeToggleComponent } from './components/shared/dark-mode-toggle/dark-mode-toggle.component';
+import { ViewNoteComponent } from './components/view-note/view-note.component';
+import {CookieService} from "ngx-cookie-service";
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -41,6 +44,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     SideBarComponent,
     CalendarComponent,
     ProfileComponent,
+    DarkModeToggleComponent,
+    ViewNoteComponent,
   ],
   imports: [
     FullCalendarModule,
@@ -58,7 +63,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FormsModule,
     DropdownModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
