@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CookieService} from "ngx-cookie-service";
+import {AuthService} from "../../service/auth/auth.service";
+import {MessageService} from "primeng/api";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sign-in',
@@ -11,20 +14,30 @@ export class SignInComponent implements OnInit {
 
   signInForm = new FormGroup({
     username: new FormControl('', [Validators.required,
-                                                        Validators.minLength(5),
-                                                        Validators.maxLength(10)]),
+                                                        Validators.minLength(4),
+                                                        Validators.maxLength(15)]),
     password: new FormControl('',[Validators.required,
-                                                       Validators.minLength(6),
-                                                       Validators.maxLength(20)])
+                                                       Validators.minLength(4),
+                                                       Validators.maxLength(15)])
   });
 
-  constructor(private cookieService: CookieService) { }
+  constructor(private cookieService: CookieService,
+              private authentication:AuthService,
+              private messageService: MessageService,
+              private router: Router) { }
 
   ngOnInit(): void {
-    this.cookieService.set('username', '', 1);
   }
 
-  submit() {
-    console.log(this.signInForm.value);
+  SignIn() {
+    this.authentication.SignIn(this.signInForm).subscribe(
+      (data:any) => {
+        this.cookieService.set('SESSIONID', data.hash, 1);
+        this.cookieService.set('USERNAME', data.username, 1);
+        this.router.navigate(['/calendar']);
+      },error => {
+        this.messageService.add({severity:'error', summary:'Error', detail:error.error.error});
+      }
+    )
   }
 }

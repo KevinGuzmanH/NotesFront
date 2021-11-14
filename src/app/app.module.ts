@@ -15,7 +15,7 @@ import { NewNoteComponent } from './components/new-note/new-note.component';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {DataViewModule} from 'primeng/dataview';
 import {DropdownModule} from "primeng/dropdown";
-
+import {SpeedDialModule} from 'primeng/speeddial';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -27,6 +27,10 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { DarkModeToggleComponent } from './components/shared/dark-mode-toggle/dark-mode-toggle.component';
 import { ViewNoteComponent } from './components/view-note/view-note.component';
 import {CookieService} from "ngx-cookie-service";
+import {AuthService} from "./service/auth/auth.service";
+import {HttpClientModule} from "@angular/common/http";
+import {ToastModule} from 'primeng/toast';
+import {MessageService} from 'primeng/api';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -55,15 +59,18 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     AppRoutingModule,
     ReactiveFormsModule,
     InputTextModule,
+    SpeedDialModule,
     KeyFilterModule,
     CardModule,
+    ToastModule,
     EditorModule,
     AutoCompleteModule,
     DataViewModule,
     FormsModule,
-    DropdownModule
+    DropdownModule,
+    HttpClientModule
   ],
-  providers: [CookieService],
+  providers: [CookieService,AuthService,MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

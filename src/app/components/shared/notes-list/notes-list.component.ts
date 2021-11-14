@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Note} from "../../../model/Note";
-import {SelectItem} from "primeng/api";
+import {MenuItem, SelectItem} from "primeng/api";
+import {MessageService} from "primeng/api";
+import {NotesService} from "../../../service/notes/notes.service";
 
 @Component({
   selector: 'app-notes-list',
@@ -9,42 +11,24 @@ import {SelectItem} from "primeng/api";
 })
 export class NotesListComponent implements OnInit {
 
+  items!: MenuItem[];
 
-  Notes: Note[]= [
-    {category: 'Electonics',
-      title: 'papa',
-      text: 'ir por papas',
-      created_date: '12/12/12'},
-    {category: 'CAR',
-      title: 'cambiollanta',
-      text: 'tengo qu cam',
-      created_date: '12/12/12'},
-    {category: 'tecla',
-      title: 'teclear',
-      text: 'teclatext',
-      created_date: '12/12/12'},
-    {category: 'tecla',
-      title: 'teclear',
-      text: 'teclatext',
-      created_date: '12/12/12'},
-    {category: 'tecla',
-      title: 'teclear',
-      text: 'teclatext',
-      created_date: '12/12/12'},
-    {category: 'tecla',
-      title: 'teclear',
-      text: 'teclatext',
-      created_date: '12/12/12'}
-  ];
+  Notes!: Note[];
 
   sortOptions!: SelectItem[];
   sortField!: string;
   sortOrder!: number;
   sortKey!: string;
 
-  constructor() { }
+  constructor(private messageService: MessageService,
+              private notesService: NotesService) { }
 
   ngOnInit() {
+    this.notesService.getNotes().subscribe(
+      (data) => {
+        this.Notes = data;
+      }
+    );
     this.sortOptions = [
       {label: 'Newest First', value: '!title'},
       {label: 'Oldest First', value: 'title'},

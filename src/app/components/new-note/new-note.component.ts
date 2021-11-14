@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {NotesService} from "../../service/notes/notes.service";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-new-note',
@@ -9,7 +11,6 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 export class NewNoteComponent implements OnInit {
 
   text!: string;
-  noSpecial: RegExp = /^[^<>*!]+$/;
 
   newNote = new FormGroup({
     title: new FormControl('',[Validators.required,
@@ -19,13 +20,21 @@ export class NewNoteComponent implements OnInit {
     text: new FormControl('', [Validators.required,
                                                     Validators.minLength(4)]),
   })
-  constructor() {
+  constructor(private NoteService: NotesService,
+              private messageService: MessageService) {
   }
 
   ngOnInit() {
   }
 
   onsubmit(){
-    console.log(this.newNote.value);
+    this.NoteService.addNote(this.newNote).subscribe(
+      (data) => {
+        this.messageService.add({severity:'success', summary:'Success', detail:'Note added'});
+      },
+      (error) => {
+        console.log(error);
+      }
+    )
   }
 }

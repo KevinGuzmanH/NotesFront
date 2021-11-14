@@ -3,12 +3,12 @@
   <div class="col-9">
     <div class="p-4 marginSideBar">
       <h1>Title: {{Note.title}}</h1>
-      <h2>Category: {{Note.category}}</h2>
-      <h3>Created at: {{Note.created_date}}</h3>
+      <h2>Category: {{Note.category?.name}}</h2>
+      <h3>Created at: {{Note.creation_date?.day}},{{Note.creation_date?.month}},{{Note.creation_date?.year}}</h3>
       <div class="pt-2">
         <p-editor [minlength]="5" [(ngModel)]="Note.text" [style]="{'height':'320px'}"></p-editor>
-        <h3>{{Note.text}}</h3>
       </div>
+      <button type="submit" (click)="updateNote()" class="btn btn-primary">Submit</button>
     </div>
   </div>
   <div class="col-3 shadow-5">

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../../service/auth/auth.service';
+import {MessageService} from 'primeng/api';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -8,17 +12,33 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class SignUpComponent implements OnInit {
 
   signUpForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    lastName: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    username: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    name: new FormControl('', [Validators.required,
+                                                    Validators.minLength(4),
+                                                    Validators.maxLength(15)]),
+    last_name: new FormControl('', [Validators.required,
+                                                         Validators.minLength(4),
+                                                         Validators.maxLength(15)]),
+    username: new FormControl('', [Validators.required,
+                                                        Validators.minLength(4),
+                                                        Validators.maxLength(15)]),
+    password: new FormControl('', [Validators.required,
+                                                        Validators.minLength(4),
+                                                        Validators.maxLength(15)]),
   });
-  constructor() { }
+  constructor(private authentication:AuthService,
+              private messageService: MessageService,
+              private router: Router) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  submit() {
-    console.log('submit');
+  signUp() {
+    this.authentication.SignUp(this.signUpForm.value).subscribe(
+      (data) => {
+        this.router.navigate(['/signin']);
+      },
+      (error) => {
+        this.messageService.add({severity:'error', summary:'Error', detail:error.error.error});
+      }
+    )
   }
 }

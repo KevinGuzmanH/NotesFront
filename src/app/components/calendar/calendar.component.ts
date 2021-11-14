@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {SelectItem} from "primeng/api";
 import {Note} from "../../model/Note";
 import { CalendarOptions } from '@fullcalendar/angular';
+import { AuthService} from "../../service/auth/auth.service";
 
 @Component({
   selector: 'app-calendar',
@@ -25,9 +26,10 @@ export class CalendarComponent implements OnInit {
     this.calendarOptions.weekends = !this.calendarOptions.weekends
   }
 
-  constructor() {
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit() {
+    console.log(this.authService.checkHash());
   }
 }
