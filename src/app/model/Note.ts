@@ -8,6 +8,7 @@ export interface Note {
   text?:          string;
   creation_date?: CreationDate;
   edit_date?:     CreationDate;
+  doBefore?:      CreationDate;
 }
 
 export interface Category {

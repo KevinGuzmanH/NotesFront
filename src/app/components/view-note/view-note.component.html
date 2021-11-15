@@ -2,10 +2,16 @@
 <div class="row m-0">
   <div class="col-9">
     <div class="p-4 marginSideBar">
-      <h1>Title: {{Note.title}}</h1>
-      <h2>Category: {{Note.category?.name}}</h2>
-      <h3>Created at: {{Note.creation_date?.day}},{{Note.creation_date?.month}},{{Note.creation_date?.year}}</h3>
-      <div class="pt-2">
+      <p-toast position="top-left"></p-toast>
+      <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+      <p-button id="delete" (click)="confirm2()" styleClass="p-button-danger p-mr-2" icon="pi pi-times" label="Delete"></p-button>
+      <h4 class="view-header">Title</h4>
+      <h2>{{Note.title}}</h2>
+      <h4 class="view-header">category</h4>
+      <h2>{{Note.category?.name}}</h2>
+      <h5 class="view-header">Created at</h5>
+      <h6>{{Note.creation_date?.day}}-{{Note.creation_date?.month}}-{{Note.creation_date?.year}}</h6>
+      <div class="pt-2 mb-2">
         <p-editor [minlength]="5" [(ngModel)]="Note.text" [style]="{'height':'320px'}"></p-editor>
       </div>
       <button type="submit" (click)="updateNote()" class="btn btn-primary">Submit</button>

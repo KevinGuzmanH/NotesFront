@@ -1,13 +1,9 @@
 <app-side-bar></app-side-bar>
 <div class="row m-0">
   <div class="col-9">
+    <p-toast position="top-left"></p-toast>
     <div class="p-4 marginSideBar">
     <h2>New Note</h2>
-    <ul>
-      <li>Switch between the different fonts</li>
-      <li>Add code as functions or classes</li>
-      <li>Improve your understanding of work</li>
-    </ul>
       <form [formGroup]="newNote" (ngSubmit)="onsubmit()">
         <div class="form-group">
           <label for="noteTitle">Title</label>
@@ -17,8 +13,13 @@
           <label for="noteCategory">Category</label>
           <input id="noteCategory" class="form-control" formControlName="category" type="text">
         </div>
-
-        <div class="pt-2">
+        <div class="form-group">
+          <label for="doBefore">To do Before</label>
+          <div>
+          <p-calendar id="doBefore" formControlName="doBefore" dateFormat="yy-mm-dd" [showIcon]="true" [readonlyInput]="true"></p-calendar>
+          </div>
+        </div>
+        <div class="pt-2 mb-2">
           <p-editor [minlength]="5" formControlName="text" [style]="{'height':'320px'}"></p-editor>
         </div>
       <button type="submit" class="btn btn-primary">Submit</button>

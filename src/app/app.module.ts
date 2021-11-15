@@ -23,6 +23,7 @@ import { NotesListComponent } from './components/shared/notes-list/notes-list.co
 import { SideBarComponent } from './components/shared/side-bar/side-bar.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import {EditorModule} from 'primeng/editor';
+import {CalendarModule} from 'primeng/calendar';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DarkModeToggleComponent } from './components/shared/dark-mode-toggle/dark-mode-toggle.component';
 import { ViewNoteComponent } from './components/view-note/view-note.component';
@@ -31,6 +32,9 @@ import {AuthService} from "./service/auth/auth.service";
 import {HttpClientModule} from "@angular/common/http";
 import {ToastModule} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
+
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -60,8 +64,10 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ReactiveFormsModule,
     InputTextModule,
     SpeedDialModule,
+    ConfirmDialogModule,
     KeyFilterModule,
     CardModule,
+    CalendarModule,
     ToastModule,
     EditorModule,
     AutoCompleteModule,
@@ -70,7 +76,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     DropdownModule,
     HttpClientModule
   ],
-  providers: [CookieService,AuthService,MessageService],
+  providers: [CookieService,AuthService,MessageService,ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

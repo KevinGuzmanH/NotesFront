@@ -15,10 +15,10 @@ export class SignInComponent implements OnInit {
   signInForm = new FormGroup({
     username: new FormControl('', [Validators.required,
                                                         Validators.minLength(4),
-                                                        Validators.maxLength(15)]),
+                                                        Validators.maxLength(20)]),
     password: new FormControl('',[Validators.required,
                                                        Validators.minLength(4),
-                                                       Validators.maxLength(15)])
+                                                       Validators.maxLength(20)])
   });
 
   constructor(private cookieService: CookieService,

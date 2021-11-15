@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {SelectItem} from "primeng/api";
 import {Note} from "../../model/Note";
-import { CalendarOptions } from '@fullcalendar/angular';
+import {CalendarOptions, EventSourceInput} from '@fullcalendar/angular';
 import { AuthService} from "../../service/auth/auth.service";
+import { NotesService} from "../../service/notes/notes.service";
 
 @Component({
   selector: 'app-calendar',
@@ -26,10 +27,23 @@ export class CalendarComponent implements OnInit {
     this.calendarOptions.weekends = !this.calendarOptions.weekends
   }
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,
+              private notesService: NotesService) {
   }
+  Events: any = [];
 
   ngOnInit() {
-    console.log(this.authService.checkHash());
-  }
+    this.notesService.getNotes().subscribe(
+      (notes: Note[]) => {
+        notes.forEach(note => {
+          this.Events.push({
+            title: note.title,
+            date: `${note.doBefore?.year}-${note.doBefore?.month}-${note.doBefore?.day}`,
+          });
+        });
+        this.calendarOptions.events = this.Events;
+      })
+
+      }
+
 }

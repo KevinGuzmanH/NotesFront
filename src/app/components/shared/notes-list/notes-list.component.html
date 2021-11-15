@@ -2,7 +2,7 @@
   <p-dataView [value]="Notes" [sortField]="sortField" [sortOrder]="sortOrder" [paginator]="true" [rows]="5">
     <ng-template pTemplate="header">
       <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Category"
-                  (onChange)="onSortChange($event)" [style]="{'min-width':'15em'}"></p-dropdown>
+                  (onChange)="onSortChange($event)" [style]="{'min-width':'12em'}"></p-dropdown>
     </ng-template>
     <ng-template let-note pTemplate="listItem">
       <div class="p-col-12 p-3 shadow-1 my-1" >
@@ -10,7 +10,7 @@
           <div class="product-list-detail">
             <div class="product-name">{{note.title}}</div>
             <i class="pi pi-tag product-category-icon"></i><span class="product-category">{{note.category.name}}</span>
-            <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined"></button>
+            <button pButton pRipple [routerLink]="['/view',note.title]" type="button" icon="pi pi-book" class="p-button-rounded p-button-success p-button-outlined"></button>
           </div>
         </div>
       </div>

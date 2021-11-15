@@ -15,7 +15,7 @@ export class NotesListComponent implements OnInit {
 
   Notes!: Note[];
 
-  sortOptions!: SelectItem[];
+  sortOptions: SelectItem[]=[];
   sortField!: string;
   sortOrder!: number;
   sortKey!: string;
@@ -29,11 +29,14 @@ export class NotesListComponent implements OnInit {
         this.Notes = data;
       }
     );
-    this.sortOptions = [
-      {label: 'Newest First', value: '!title'},
-      {label: 'Oldest First', value: 'title'},
-      {label: 'Brand', value: 'text'}
-    ];
+    this.notesService.getCategoryNotes().subscribe(
+      (data:any) => {
+        //push sortOptions with data.name
+        for (let i = 0; i < data.length; i++) {
+          this.sortOptions.push({label: data[i].name, value: '!category'});
+        }
+      }
+    );
 
   }
 
@@ -51,8 +54,6 @@ export class NotesListComponent implements OnInit {
     }
   }
 
-  selectCar($event: MouseEvent, car: any) {
 
-  }
 
 }

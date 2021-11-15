@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import {FormGroup} from "@angular/forms";
 import {Observable} from "rxjs";
 import {Note} from "../../model/Note";
+import {UpdateNote} from "../../model/UpdateNote";
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,12 @@ export class NotesService {
     return this.Client.get<Note>(this.URL + '/getNote/' + title,{withCredentials: true});
   }
 
-  updateNote(updateNote:JSON):Observable<Note> {
-    return this.Client.post<Note>(this.URL + '/updateNote',updateNote,{withCredentials: true});
+  updateNote(updateNote: UpdateNote) {
+    return this.Client.post(this.URL + '/updateNote',updateNote,{withCredentials: true});
   }
+
+  getCategoryNotes() {
+    return this.Client.get(this.URL + '/getNoteCategories',{withCredentials: true});
+  }
+
 }

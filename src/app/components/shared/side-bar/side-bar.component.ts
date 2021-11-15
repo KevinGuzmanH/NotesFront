@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-side-bar',
@@ -8,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 export class SideBarComponent implements OnInit {
 
   visibleSidebar1: boolean = false;
-  constructor() { }
+  constructor(private cookieService: CookieService) { }
 
   ngOnInit(): void {
   }
 
+  SignOut(){
+    this.cookieService.deleteAll();
+  }
 }
