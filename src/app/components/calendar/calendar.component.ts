@@ -17,10 +17,7 @@ export class CalendarComponent implements OnInit {
     initialView: 'dayGridMonth',
     weekends: true,
     height: 550,
-    events: [
-      { title: 'event 1', date: '2021-11-01' },
-      { title: 'event 2', date: '2021-11-05' }
-    ]
+    events: []
   };
 
   toggleWeekends() {
@@ -31,14 +28,26 @@ export class CalendarComponent implements OnInit {
               private notesService: NotesService) {
   }
   Events: any = [];
+  day: string='';
+  month: string='';
 
   ngOnInit() {
     this.notesService.getNotes().subscribe(
       (notes: Note[]) => {
         notes.forEach(note => {
+          this.day = note?.doBefore?.day?.toString() ?? "";
+          this.month = note?.doBefore?.month?.toString() ?? "";
+
+          if (note?.doBefore?.day?.toString().length === 1) {
+            this.day = '0' + note.doBefore?.day;
+          }
+          if (note?.doBefore?.month?.toString().length === 1) {
+            this.month = '0' + note.doBefore?.month;
+          }
+
           this.Events.push({
             title: note.title,
-            date: `${note.doBefore?.year}-${note.doBefore?.month}-${note.doBefore?.day}`,
+            date: `${note.doBefore?.year}-${this.month}-${this.day}`,
           });
         });
         this.calendarOptions.events = this.Events;

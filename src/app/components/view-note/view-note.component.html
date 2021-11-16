@@ -1,6 +1,6 @@
 <app-side-bar></app-side-bar>
 <div class="row m-0">
-  <div class="col-9">
+  <div class="col-12 col-lg-9 mb-lg-0 mb-4">
     <div class="p-4 marginSideBar">
       <p-toast position="top-left"></p-toast>
       <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
@@ -14,10 +14,10 @@
       <div class="pt-2 mb-2">
         <p-editor [minlength]="5" [(ngModel)]="Note.text" [style]="{'height':'320px'}"></p-editor>
       </div>
-      <button type="submit" (click)="updateNote()" class="btn btn-primary">Submit</button>
+      <button type="submit" (click)="updateNote()" class="btn btn-primary">Update</button>
     </div>
   </div>
-  <div class="col-3 shadow-5">
+  <div class="col-12 shadow-5 col-lg-3 notesList">
     <app-notes-list></app-notes-list>
   </div>
 </div>

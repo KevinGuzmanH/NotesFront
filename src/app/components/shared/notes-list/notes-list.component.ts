@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Note} from "../../../model/Note";
 import {MenuItem, SelectItem} from "primeng/api";
 import {MessageService} from "primeng/api";
 import {NotesService} from "../../../service/notes/notes.service";
+import {Table} from "primeng/table";
 
 @Component({
   selector: 'app-notes-list',
@@ -19,6 +20,7 @@ export class NotesListComponent implements OnInit {
   sortField!: string;
   sortOrder!: number;
   sortKey!: string;
+  loading: boolean = true;
 
   constructor(private messageService: MessageService,
               private notesService: NotesService) { }
@@ -26,6 +28,7 @@ export class NotesListComponent implements OnInit {
   ngOnInit() {
     this.notesService.getNotes().subscribe(
       (data) => {
+        this.loading = false;
         this.Notes = data;
       }
     );
@@ -39,7 +42,6 @@ export class NotesListComponent implements OnInit {
     );
 
   }
-
 
   onSortChange(event: any) {
     let value = event.value;

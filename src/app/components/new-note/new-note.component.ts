@@ -33,7 +33,7 @@ export class NewNoteComponent implements OnInit {
 
   onsubmit(){
     this.newNote.value.doBefore = this.newNote.value.doBefore.getTime();
-
+    console.log(this.newNote.value.doBefore);
     this.NoteService.addNote(this.newNote).subscribe(
       (data) => {
         window.location.reload();

@@ -5,6 +5,8 @@ import {NotesService} from "../../service/notes/notes.service";
 import {MessageService} from "primeng/api";
 import {UpdateNote} from "../../model/UpdateNote";
 import {ConfirmationService, ConfirmEventType} from 'primeng/api';
+import {Router} from "@angular/router";
+
 @Component({
   selector: 'app-view-note',
   templateUrl: './view-note.component.html',
@@ -17,13 +19,14 @@ export class ViewNoteComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private notesService: NotesService,
               private messageService: MessageService,
-              private confirmationService: ConfirmationService) { }
+              private confirmationService: ConfirmationService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.notesService.getNote(params.noteTitle).subscribe(note => {
         this.Note = note;
-        console.log(note);
+        console.log(this.Note);
       });
     });
   }
@@ -45,7 +48,13 @@ export class ViewNoteComponent implements OnInit {
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       accept: () => {
-        this.messageService.add({severity:'info', summary:'Confirmed', detail:'Record deleted'});
+        this.notesService.deleteNote(this.Note.title || "")
+          .subscribe((data:any) => {
+            this.messageService.add({severity: 'success', summary: 'Success', detail: data.message});
+            this.router.navigate(['/calendar']);
+          }, error => {
+            this.messageService.add({severity: 'error', summary: 'Error', detail: 'There was a problem'});
+          });
       },
       reject: (type: any) => {
         switch(type) {

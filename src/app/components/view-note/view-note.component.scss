@@ -11,3 +11,9 @@
 .view-header{
   color: #1266f1;
 }
+
+@media screen and (max-width: 992px) {
+  #delete{
+    left: 70%;
+  }
+}

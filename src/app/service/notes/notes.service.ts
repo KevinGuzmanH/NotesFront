@@ -37,4 +37,7 @@ export class NotesService {
     return this.Client.get(this.URL + '/getNoteCategories',{withCredentials: true});
   }
 
+  deleteNote(title: string) {
+    return this.Client.delete(this.URL + '/deleteNote/'+title,{withCredentials: true,headers: {'Content-Type': 'application/json'}});
+  }
 }

@@ -24,7 +24,6 @@ import { SideBarComponent } from './components/shared/side-bar/side-bar.componen
 import { CalendarComponent } from './components/calendar/calendar.component';
 import {EditorModule} from 'primeng/editor';
 import {CalendarModule} from 'primeng/calendar';
-import { ProfileComponent } from './components/profile/profile.component';
 import { DarkModeToggleComponent } from './components/shared/dark-mode-toggle/dark-mode-toggle.component';
 import { ViewNoteComponent } from './components/view-note/view-note.component';
 import {CookieService} from "ngx-cookie-service";
@@ -35,6 +34,7 @@ import {MessageService} from 'primeng/api';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
 
+import { TagModule } from 'primeng/tag';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -51,7 +51,6 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     NotesListComponent,
     SideBarComponent,
     CalendarComponent,
-    ProfileComponent,
     DarkModeToggleComponent,
     ViewNoteComponent,
   ],
@@ -66,6 +65,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     SpeedDialModule,
     ConfirmDialogModule,
     KeyFilterModule,
+    TagModule,
     CardModule,
     CalendarModule,
     ToastModule,
