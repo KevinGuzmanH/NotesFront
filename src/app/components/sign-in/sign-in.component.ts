@@ -35,7 +35,7 @@ export class SignInComponent implements OnInit {
         this.cookieService.set('SESSIONID', data.hash, 1, '/', 'https://noteskeviny.netlify.app',true, 'None');
         this.cookieService.set('USERNAME', data.username, 1, '/', 'https://noteskeviny.netlify.app',true, 'None');
         this.router.navigate(['/calendar']);
-
+        console.log('set')
       },error => {
         this.messageService.add({severity:'error', summary:'Error', detail:error.error.error});
       }
