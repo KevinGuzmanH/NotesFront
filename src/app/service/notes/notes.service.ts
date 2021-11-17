@@ -10,7 +10,7 @@ import {UpdateNote} from "../../model/UpdateNote";
 })
 export class NotesService {
 
-  URL = 'https://notesbackapi.herokuapp.com/Notes/V1';
+  URL = 'https://notesbackapi.herokuapp.com/security/V1/Notes/V1';
   Client: HttpClient;
 
   constructor(HttpClient: HttpClient) {
