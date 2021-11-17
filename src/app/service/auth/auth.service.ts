@@ -8,9 +8,8 @@ import {Note} from "../../model/Note";
   providedIn: 'root'
 })
 export class AuthService {
-  URL = 'http://localhost:4000/security/V1';
+  URL = 'https://notesbackapi.herokuapp.com/security/V1';
   Client: HttpClient;
-  private authorized: boolean = false;
 
   constructor(Client: HttpClient) {
     this.Client = Client;
